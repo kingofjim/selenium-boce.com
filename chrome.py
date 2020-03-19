@@ -9,7 +9,7 @@ chrome_options.add_argument('--disable-gpu')
 driverpath = './chromedriver'
 driver = webdriver.Chrome(executable_path=driverpath, options=chrome_options)
 
-driver.get("https://www.boce.com") #前往這個網址
+driver.get("https://www.boce.com")
 
 url_input = driver.find_element_by_class_name('el-input__inner')
 url_input.send_keys('www.tonnyshanghai.com')
