@@ -1,4 +1,4 @@
-
 screenshot/
-
 .idea/
+chromedriver
+geckodriver
