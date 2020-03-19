@@ -2,3 +2,4 @@ screenshot/
 .idea/
 chromedriver
 geckodriver
+*.xlsx

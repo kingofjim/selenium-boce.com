@@ -1,36 +1,39 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import base64, time
+import base64, time, datetime
 
-chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-gpu')
-
+target_list = ['www.tonnyshanghai.com', '10sports.asia', 'bo88810.com']
 driverpath = './chromedriver'
-driver = webdriver.Chrome(executable_path=driverpath, options=chrome_options)
 
-driver.get("https://www.boce.com")
+for target in target_list:
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
 
-url_input = driver.find_element_by_class_name('el-input__inner')
-url_input.send_keys('www.tonnyshanghai.com')
+    driver = webdriver.Chrome(executable_path=driverpath, options=chrome_options)
+    driver.get('https://www.boce.com/')
 
-url_enter = driver.find_elements_by_class_name('el-button--primary')[1]
-url_enter.click()
+    url_input = driver.find_element_by_class_name('el-input__inner')
+    url_input.send_keys(target)
 
-while(True):
-    try:
-        result_button = driver.find_element_by_css_selector('.result-wrap .detail-wrap .el-button')
-        result_button.click()
-        break
-    except:
-        pass
+    url_enter = driver.find_elements_by_class_name('el-button--primary')[1]
+    url_enter.click()
 
-map = driver.find_element_by_tag_name('canvas')
-canvas_base64 = driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", map)
-canvas_png = base64.b64decode(canvas_base64)
+    while(True):
+        try:
+            result_button = driver.find_element_by_css_selector('.result-wrap .detail-wrap .el-button')
+            result_button.click()
+            break
+        except:
+            pass
 
-with open(r"canvas.png", 'wb') as f:
-    f.write(canvas_png)
+    map = driver.find_element_by_tag_name('canvas')
+    canvas_base64 = driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", map)
+    canvas_png = base64.b64decode(canvas_base64)
 
-time.sleep(10)
-driver.close()
+    with open(r"./screenshot/"+target+"_"+datetime.datetime.now().strftime('%m-%d %H:%M:%S')+".png", 'wb') as f:
+        f.write(canvas_png)
+
+    time.sleep(10)
+    driver.close()
+
