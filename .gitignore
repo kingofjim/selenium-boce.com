@@ -1,5 +1,5 @@
-screenshot/
+#screenshot/
 .idea/
 chromedriver
 geckodriver
-*.xlsx
+#*.xlsx
