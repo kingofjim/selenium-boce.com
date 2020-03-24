@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import base64, time, datetime
 
-target_list = ['www.tonnyshanghai.com', '10sports.asia', 'bo88810.com']
+target_list = ['www.tongxueqn.com', 'su.tongxueqn.com', 'ten.tongxueqn.com' ,'ali.tongxueqn.com']
 driverpath = './chromedriver'
 
 for target in target_list:
